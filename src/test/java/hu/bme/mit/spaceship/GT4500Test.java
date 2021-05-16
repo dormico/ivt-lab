@@ -16,8 +16,7 @@ public class GT4500Test {
   @BeforeEach
   public void init(){
     mockTS1 = mock(TorpedoStore.class);
-    mockTS2 = mock(TorpedoStore.class);
-    
+    mockTS2 = mock(TorpedoStore.class);    
     
     this.ship = new GT4500(mockTS1, mockTS2);
   }
@@ -25,10 +24,16 @@ public class GT4500Test {
   @Test
   public void fireTorpedo_Single_Success(){
     // Arrange
-    when(ship.fireTorpedo(FiringMode.SINGLE)).thenReturn(true);
+    when(mockTS1.isEmpty()).thenReturn(false);
+    when(mockTS2.isEmpty()).thenReturn(false);
+    when(mockTS1.fire(1)).thenReturn(true);
+    when(mockTS2.fire(1)).thenReturn(true);
     // Act
     boolean result = ship.fireTorpedo(FiringMode.SINGLE);
-
+    verify(mockTS1, times(1)).isEmpty();
+    verify(mockTS2, times(1)).isEmpty();
+    verify(mockTS1, times(1)).fire(1);
+    verify(mockTS2, times(1)).fire(1);
     // Assert
     assertEquals(true, result);
   }
@@ -36,10 +41,16 @@ public class GT4500Test {
   @Test
   public void fireTorpedo_All_Success(){
     // Arrange
-    when(ship.fireTorpedo(FiringMode.ALL)).thenReturn(true);
+    when(mockTS1.isEmpty()).thenReturn(false);
+    when(mockTS2.isEmpty()).thenReturn(false);
+    when(mockTS1.fire(1)).thenReturn(true);
+    when(mockTS2.fire(1)).thenReturn(true);
     // Act
     boolean result = ship.fireTorpedo(FiringMode.ALL);
-
+    verify(mockTS1, times(1)).isEmpty();
+    verify(mockTS2, times(1)).isEmpty();
+    verify(mockTS1, times(1)).fire(1);
+    verify(mockTS2, times(1)).fire(1);
     // Assert
     assertEquals(true, result);
   }
