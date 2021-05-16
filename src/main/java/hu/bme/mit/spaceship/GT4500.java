@@ -12,7 +12,7 @@ public class GT4500 implements SpaceShip {
 
   public GT4500(TorpedoStore ts1, TorpedoStore ts2) {
     this.primaryTorpedoStore = ts1;
-    this.primaryTorpedoStore = ts2;
+    this.secondaryTorpedoStore = ts2;
     //this.primaryTorpedoStore = new TorpedoStore(10);
     //this.secondaryTorpedoStore = new TorpedoStore(10);
   }
